@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" > 
+<html>
+<head><title>Microsoft Survey</title>
+
+<script>
+var SR_url = window.location.toString().toLowerCase();
+var SR_url_stripped = SR_url.split("?");
+var start_Time;
+
+if(!(SR_url_stripped[1]) || document.cookie.indexOf('cleflag') != -1){
+	window.location.href="http://www.apolloint.windowsphone-int.com/en-us";
+}
+try{
+	var _sPars= SR_url_stripped[1].substr(SR_url_stripped[1].indexOf("site="), SR_url_stripped[1].length);
+	var _site = _sPars.substr(_sPars.indexOf("=")+1, _sPars.indexOf("&")-5);
+}catch(err){}
+var _q6flag=true;
+//var c = 'cleflag=1; path=/; domain=.msn-int.com';
+//document.cookie = c;	
+
+function setStartTime(){
+	today=new Date();	startsek=today.getSeconds(); startmin=today.getMinutes();	starttim=today.getHours(); starta=(startsek) + 60 * (startmin) + 3600 * (starttim); 
+	//document.getElementById("startTime").value=starta;
+	start_Time=starta;
+}
+</script>
+<style type="text/css"> 
+	BODY{ background:#014471 url(bg_1.jpg) top left repeat-x; text-align:center;}
+	.SR_Q{font-family:Verdana,Arial,Helvetica,sans-serif;font-size:11px;color:#000000;} 
+	a{font-family:Verdana,Arial,Helvetica,sans-serif; font-size:10px; color:#000000;}
+	a:hover{color:#006699;}
+</style>
+<script src="http://siterecruit.comscore.com/sr/windowsphone/broker.js"></script>
+</head>
+<body onLoad="window.resizeTo(1080,850);window.moveTo((screen.availWidth-(screen.width * .9))/2, (screen.availHeight-(screen.height * .9))/2);window.focus();">
+<CENTER><!--INTERSTITIAL PAGE-->
+</CENTER>
+<script>
+	setStartTime();
+	//CUSTOM CODE - View log
+	var pa_loc = window.location.toString();
+	var pa_args = pa_loc.substring(pa_loc.indexOf("?")+1,pa_loc.length);
+	var _loc = pa_args.substring(pa_args.indexOf("location=")+9, pa_args.indexOf("&"));
+	//var url = "https://web.survey-poll.com/tc/CreateLog.aspx?log=comscore/view/p127748231-accept.log&"  + pa_args;
+	//var i = new Image();
+	//i.src = url;
+	var qInvParam='';
+	//END CUSTOM CODE
+	function a(param, _value){
+		qInvParam += '&'+param+'='+ _value;
+	}
+	function readCookie(name)
+	{
+  	var ca = document.cookie.split(';');
+  	var nameEQ = name + "=";
+  	for(var i=0; i < ca.length; i++) {
+    	var c = ca[i];
+    	while (c.charAt(0)==' ') c = c.substring(1, c.length); //delete spaces
+    	if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+    }
+  	return null;
+	}
+
+	function fSubmit() {
+		today=new Date();
+		endsek=today.getSeconds();
+		endmin=today.getMinutes();
+		endtim=today.getHours();
+		enda=(endsek) + 60 * (endmin) + 3600 * (endtim); 
+		totalTime=enda-start_Time;
+		a('totalTime', totalTime); a('startTime', start_Time); a('endTime', enda); 
+		var _srCvals = unescape(readCookie("msresearch")).replace(/\":\"|\":/gi, "=");
+		var _srCvals = _srCvals.replace(/\",\"|\":{\"|,\"|{\"/gi, "&");		
+		var _srCvals = _srCvals.replace(/}|\[|\]/gi, "");
+		pa_args = unescape(pa_args);	
+		var _params =  pa_args.replace(/#/gi,"?") + qInvParam + _srCvals;
+		var url = "http://ar.voicefive.com/bmx3/projects/srSplash.htm?sUrl=https://survey2.securestudies.com/wix/p127227702.aspx&cookiePid=p147490063&"+_params;
+		
+		window.location.href = url;
+	}
+	
+	function go_back() {
+		window.location.href="http://www.apolloint.windowsphone-int.com/en-us";
+	}
+</script>
+
+
+</body>
+</html>

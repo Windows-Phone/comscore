@@ -1,0 +1,52 @@
+/*
+Copyright (c) 2012, comScore Inc. All rights reserved.
+version: 5.0.3
+*/
+var _halt=false;
+var _reg = /^http(s)?\:\/\/www\.windowsphone\.com/i.test(document.referrer);
+if(_reg){
+	_halt = true;
+}
+COMSCORE.SiteRecruit.Broker.config = {
+	version: "5.0.3",
+	//TODO:Karl extend cookie enhancements to ie userdata
+		testMode: false,
+	
+	// cookie settings
+	cookie:{
+		name: 'msresearch',
+		path: '/',
+		domain:  '.windowsphone.com' ,
+		duration: 90,
+		rapidDuration: 0,
+		expireDate: ''
+	},
+	thirdPartyOptOutCookieEnabled : false,
+	
+	// optional prefix for pagemapping's pageconfig file
+	prefixUrl: "",
+	
+	//events
+	Events: {
+		beforeRecruit: function() {
+							// HALT RECRUITMENT FOR MOBILE DEVICES
+if (/iphone|ipad|ipod|android|opera mini|blackberry|windows (phone|ce)|iemobile|htc|nokia/i.test(navigator.userAgent)) {
+  COMSCORE.SiteRecruit.Broker.config.mapping[0].halt = true;
+}
+
+					}
+	},
+	
+		mapping:[
+	// m=regex match, c=page config file (prefixed with configUrl), f=frequency
+	{m: '//[\\w\\.-]+/de-de/', c: 'inv_c_p127227702-DE.js', f: 0.087, p: 0, halt: _halt 	}
+	,{m: '//[\\w\\.-]+/en-gb', c: 'inv_c_p127227702-GB.js', f: 0.066, p: 0, halt: _halt 	}
+	,{m: '//[\\w\\.-]+/en-us', c: 'inv_c_p127227702-US.js', f: 0.04, p: 0, halt: _halt 	}
+	,{m: '//[\\w\\.-]+/en-us/celebrity/andy', c: 'inv_c_p127227702-US-2006.js', f: 0.04, p: 1, halt: _halt 	}
+	,{m: '//[\\w\\.-]+/en-us/celebrity/cam', c: 'inv_c_p127227702-US-2007.js', f: 0.04, p: 1, halt: _halt 	}
+	,{m: '//[\\w\\.-]+/en-us/celebrity/gwen', c: 'inv_c_p127227702-US-2004.js', f: 0.04, p: 1, halt: _halt 	}
+	,{m: '//[\\w\\.-]+/en-us/celebrity/jessica', c: 'inv_c_p127227702-US-2005.js', f: 0.04, p: 1, halt: _halt 	}
+	,{m: '//[\\w\\.-]+/fr-fr/', c: 'inv_c_p127227702-FR.js', f: 0.14, p: 0, halt: _halt 	}
+]
+};
+COMSCORE.SiteRecruit.Broker.run();
